@@ -127,3 +127,25 @@ The a-Network will respond with
 
     >pong
 That simple!
+
+Hardware supported
+------------------
+We have made available for you different Arduino Sketches usinf different types of hardware. Almost all the sketches can be run using Atmega8, the compiled code is les than  8kb so that you save space and space is very important even for wearable devices.
+Arduino in any form/shape is supported
+![Arduino UNO][1]
+![Raspberry][2]
+In case you need a WIFI port you can use any of these options (a Rovin WiFly module, Arduino Sketch is included in this repository, the all famous ENC28J60)
+![Wifly][3]
+The advantage of the ENC28J60 is that is very cheap, we could successfully created a very powerful system out of $10 including this chipset and an arduino. So very convinience for price and space.
+![ENC28J60][4]
+The last supported hardware is the builtin WIFI of the arduino, also known as Wiznet 5100. Which might look like the following pictures
+![Wiznet chipset][5]
+![Wifi arduino shield][6]
+
+
+  [1]: http://upload.wikimedia.org/wikipedia/commons/3/38/Arduino_Uno_-_R3.jpg
+  [2]: http://piregistration.element14.com/images/sony-rasp-pi.jpg
+  [3]: http://3.bp.blogspot.com/_t0_LxJZewSk/S2DIk0_9B-I/AAAAAAAAAB0/ek-cCGpsR4k/s320/wifly-gsx-wifi-breakout-board.jpg
+  [4]: http://www.openhacks.com/uploadsproductos/enc28j60_ethernet_interface_module1.jpg
+  [5]: http://www.libstock.com/img/projects/7522/213/1322790032_09473_01.jpg
+  [6]: http://arduino.cc/en/uploads/Main/ArduinoWiFiShield_Front_450px.jpg
