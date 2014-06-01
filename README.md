@@ -130,7 +130,27 @@ That simple!
 
 Hardware supported
 ------------------
-We have made available for you different Arduino Sketches usinf different types of hardware. Almost all the sketches can be run using Atmega8, the compiled code is les than  8kb so that you save space and space is very important even for wearable devices.
+We have made available for you different Arduino Sketches using different types of hardware. Almost all the sketches can be run using Atmega8, that means the compiled code is less than  8kb so that you save space and space is very important even for wearable devices.
+In general you can use any of the following hardware and all hardware created from any of them:
+
+ - Arduino UNO
+ - Arduino Leonardo
+ - Arduino Yun
+ - Arduino Due
+ - Arduino Micro
+ - Arduino Pro
+ - Arduino Mega
+ - Arduino nano
+ - Arduino mini
+ - Arduino Fio
+ - LilyPad (any)
+
+Internet connection modules
+
+ - Rovin Networks modules (wifly etc etc)
+ - Wiznet modules (such as W5100)
+ - ENC28J60
+
 Arduino in any form/shape is supported
 ![Arduino UNO][1]
 ![Raspberry][2]
