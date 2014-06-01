@@ -144,6 +144,7 @@ In general you can use any of the following hardware and all hardware created fr
  - Arduino mini
  - Arduino Fio
  - LilyPad (any)
+ - Raspberry PI
 
 Internet connection modules
 
