@@ -33,7 +33,7 @@ same chip that connects to the Suitch a-Network Server.
 // The IP address will be dependent on your local network:
 byte mac[] = { 0x35, 0xF5, 0x7A, 0x82, 0x2A, 0x7C };
 IPAddress ip(10,0,1,50);
-
+IPAddress lightServer(10, 0, 1, 21);
 byte packetBuffer[3];
 int reset=0;
 int waitingCharacter=0;
@@ -52,7 +52,38 @@ IPAddress server(209,177,156,249);
 // Initialize the Ethernet client library
 // with the IP address and port of the server 
 EthernetClient client;
-
+unsigned long turnLightsON(IPAddress& address)
+{
+  Serial.println("conectando a casa");
+  // set all bytes in the buffer to 0
+  memset(packetBuffer, 0, 3); 
+  // Initialize values needed to form NTP request
+  // (see URL above for details on the packets)
+  packetBuffer[0] = 0x22;   // LI, Version, Mode
+  packetBuffer[1] = 0x00;     // Stratum, or type of clock
+  packetBuffer[2] = 0x55;     // Polling Interval
+  // all NTP fields have been given values, now
+  // you can send a packet requesting a timestamp: 		   
+  Udp.beginPacket(address, 50000); //NTP requests are to port 123
+  Udp.write(packetBuffer,3);
+  Udp.endPacket(); 
+}
+unsigned long turnLightsOFF(IPAddress& address)
+{
+  Serial.println("conectando a casa");
+  // set all bytes in the buffer to 0
+  memset(packetBuffer, 0, 3); 
+  // Initialize values needed to form NTP request
+  // (see URL above for details on the packets)
+  packetBuffer[0] = 0x21;   // LI, Version, Mode
+  packetBuffer[1] = 0x00;     // Stratum, or type of clock
+  packetBuffer[2] = 0x55;     // Polling Interval
+  // all NTP fields have been given values, now
+  // you can send a packet requesting a timestamp: 		   
+  Udp.beginPacket(address, 50000); //NTP requests are to port 123
+  Udp.write(packetBuffer,3);
+  Udp.endPacket(); 
+}
 void startConnection(){
   Serial.println("connecting to lineaccess");
   Udp.begin(localPort);
@@ -68,6 +99,10 @@ void startConnection(){
 void setup() {
   // start the Ethernet connection:
   Ethernet.begin(mac, ip);
+  pinMode(3, OUTPUT);
+  pinMode(2, OUTPUT);
+  digitalWrite(2, LOW);
+  digitalWrite(3, LOW);
   incomingString=String("X");
  // Open serial communications and wait for port to open:
   Serial.begin(9600);
@@ -89,19 +124,36 @@ void loop()
     Serial.print(incomingCharacter);
     if (incomingCharacter == '\n' || incomingCharacter== '\r') {
       if(incomingString=="XTOKEN?"){
-       client.println("YOUR_TOKEN/YOUR_SECRET_TOKEN");
+       client.println("YOUR_TOKEN/YOUR_SECRET_TOKEn");
        incomingString="X";
       } else if(incomingString=="XWLCME"){
         //quiere decir que entramos bien
         Serial.println("Connected to a-Network");
         reset=1;
         incomingString="X";
-        /* IN CASE YOU NEED MORE CONDITIONS JUST ADD THEM JUST LIKE THE -PING- MESSAGES*/
+      } else if(incomingString=="XON" || incomingString=="Xon"){
+        incomingString="X";
+        turnLightsON(lightServer);        
+      } else if(incomingString=="XOFF" || incomingString=="Xoff"){
+        incomingString="X";
+        turnLightsOFF(lightServer);
+      } else if(incomingString=="XOPEN" || incomingString=="Xopen"){
+        incomingString="X";
+        digitalWrite(2, HIGH);
+        digitalWrite(3, LOW);
+        delay(15000);
+        digitalWrite(2, LOW);
+        digitalWrite(3, LOW);
+      } else if(incomingString=="Xclose" || incomingString=="XCLOSE"){
+        incomingString="X";
+        digitalWrite(2, LOW);
+        digitalWrite(3, HIGH);
+        delay(15000);
+        digitalWrite(2, LOW);
+        digitalWrite(3, LOW);
       } else if(incomingString=="XPING"){
-       incomingString="X"; 
-      } else if(incomingString=="XPONG"){
        incomingString="X";
-      }else {
+      } else {
         incomingString="X";
       }
     } else {
