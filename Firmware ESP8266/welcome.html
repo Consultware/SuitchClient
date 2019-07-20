@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>Consultware dash button navigation</title>
+
+  <link href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+
+  <style type="text/css">
+    * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #666666;
+  line-height: 1.5em;
+  position: relative;
+}
+.navOpen {
+  overflow: hidden;
+}
+
+.wrapper {
+  transition-duration: 0.5s;
+  transition-timing-function: swing;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 100px 40px;
+}
+.wrapper.open {
+  transform: translateX(250px) translateY(50px);
+  -webkit-transform: translateX(250px) translateY(50px);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+}
+.wrapper section {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.wrapper section h1 {
+  font-weight: 300;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+.wrapper section h2 {
+  font-weight: 300;
+  font-size: 20px;
+  margin-bottom: 40px;
+}
+.wrapper section p {
+  margin-bottom: 40px;
+}
+.openNav {
+  transition-duration: 0.5s;
+  transition-timing-function: swing;
+  width: 50px;
+  height: 50px;
+  background-color: #14B9FF;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9;
+}
+.openNav:hover {
+  cursor: pointer;
+}
+.openNav .icon {
+  transition-duration: 0.2s;
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background-color: white;
+  top: 24px;
+  left: 10px;
+}
+.openNav .icon:before,
+.openNav .icon:after {
+  transition-duration: 0.5s;
+  background-color: white;
+  position: absolute;
+  content: "";
+  width: 30px;
+  height: 2px;
+  left: 0px;
+}
+.openNav .icon:before {
+  top: -7px;
+}
+.openNav .icon:after {
+  top: 7px;
+}
+.openNav.open {
+  transform: translateX(250px) translateY(50px);
+  -webkit-transform: translateX(250px) translateY(50px);
+}
+.openNav.open .icon {
+  background-color: transparent;
+}
+.openNav.open .icon:before,
+.openNav.open .icon:after {
+  top: 0;
+}
+.openNav.open .icon:before {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.openNav.open .icon:after {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+nav {
+  background-color: #14B9FF;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+nav ul {
+  width: 250px;
+  margin-top: 50px;
+}
+nav ul:hover li {
+  color: rgba(255, 255, 255, 0.5);
+}
+nav ul li {
+  transition-duration: 0.25s;
+  display: block;
+  padding: 5px 40px;
+  color: white;
+  letter-spacing: 0.02em;
+  text-align: right;
+}
+nav ul li:hover {
+  cursor: pointer;
+  color: white;
+}
+
+a:link {
+    color: #dfe5eb;
+    text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+    color: #dfe5eb;
+    text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* selected link */
+a:active {
+    color: #dfe5eb;
+    text-decoration: none;
+}
+  </style>
+
+</head>
+
+<body>
+
+  <nav id="mynav">
+  <ul>
+    <li><a href="welcome.html">Home</a></li>
+    <li><a href="iot1.html">Suitch IoT</a></li>
+    <li><a href="fileBrowser.html">File browser</a></li>
+    <li><a href="scanNetwork.html">Networks</a></li>
+  </ul>
+</nav>
+<div class="openNav" id="openNav">
+  <div class="icon"></div>
+</div>
+
+<div class="wrapper" id="mywrapper">
+  <section>
+    <h1>Welcome to Suitch</h1>
+    <h2>By Consultware</h2>
+    
+    <p>Thank you for purschasing</p>
+
+    
+  </section>
+</div>
+
+  <script type="text/javascript">
+
+document.getElementById("openNav").addEventListener("click", function(){
+    document.body.classList.toggle('navOpen');  
+    document.querySelector('#mynav').classList.toggle('open');
+    document.querySelector('#mywrapper').classList.toggle('open');
+});
+  </script>
+
+  
+
+</body>
+
+</html>

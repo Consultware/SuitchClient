@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>CodePen - Material design navigation</title>
+
+  <link href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+
+  <style type="text/css">
+
+    * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #666666;
+  line-height: 1.5em;
+  position: relative;
+}
+
+
+.navOpen {
+  overflow: hidden;
+}
+.wrapper {
+  transition-duration: 0.5s;
+  transition-timing-function: swing;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 100px 40px;
+}
+.wrapper.open {
+  transform: translateX(250px) translateY(50px);
+  -webkit-transform: translateX(250px) translateY(50px);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+}
+.wrapper section {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.wrapper section h1 {
+  font-weight: 300;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+.wrapper section h2 {
+  font-weight: 300;
+  font-size: 20px;
+  margin-bottom: 40px;
+}
+.wrapper section p {
+  margin-bottom: 40px;
+}
+.openNav {
+  transition-duration: 0.5s;
+  transition-timing-function: swing;
+  width: 50px;
+  height: 50px;
+  background-color: #14B9FF;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9;
+}
+.openNav:hover {
+  cursor: pointer;
+}
+.openNav .icon {
+  transition-duration: 0.2s;
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background-color: white;
+  top: 24px;
+  left: 10px;
+}
+.openNav .icon:before,
+.openNav .icon:after {
+  transition-duration: 0.5s;
+  background-color: white;
+  position: absolute;
+  content: "";
+  width: 30px;
+  height: 2px;
+  left: 0px;
+}
+.openNav .icon:before {
+  top: -7px;
+}
+.openNav .icon:after {
+  top: 7px;
+}
+.openNav.open {
+  transform: translateX(250px) translateY(50px);
+  -webkit-transform: translateX(250px) translateY(50px);
+}
+.openNav.open .icon {
+  background-color: transparent;
+}
+.openNav.open .icon:before,
+.openNav.open .icon:after {
+  top: 0;
+}
+.openNav.open .icon:before {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.openNav.open .icon:after {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+nav {
+  background-color: #14B9FF;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+nav ul {
+  width: 250px;
+  margin-top: 50px;
+}
+nav ul:hover li {
+  color: rgba(255, 255, 255, 0.5);
+}
+nav ul li {
+  transition-duration: 0.25s;
+  display: block;
+  padding: 5px 40px;
+  color: white;
+  letter-spacing: 0.02em;
+  text-align: right;
+}
+nav ul li:hover {
+  cursor: pointer;
+  color: white;
+}
+form {
+  padding:30px;
+  border-radius:3px;
+  margin:50px auto;
+  width:350px;
+  background:#efefef;
+  border-top:6px solid #62c2f3;
+}
+
+input[type="submit"] {
+  border:none;
+  background:#62c2f3;
+  color:#fff;
+  font-size:20px;
+  padding:10px 0;
+  border-radius:3px;
+  cursor:pointer;
+  width:100%;
+}
+input[type="submit"]:hover {opacity:.8;}
+input[type="submit"]:active {opacity:1;}
+
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+
+
+@-webkit-keyframes signal {
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes signal {
+  100% {
+    opacity: 1;
+  }
+}
+a:link {
+    color: #dfe5eb;
+    text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+    color: #dfe5eb;
+    text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* selected link */
+a:active {
+    color: #dfe5eb;
+    text-decoration: none;
+}
+
+
+  </style>
+
+</head>
+
+<body>
+
+  <nav id="mynav">
+  <ul>
+    <li><a href="welcome.html">Home</a></li>
+    <li><a href="welcome.html">Suitch IoT</a></li>
+    <li><a href="fileBrowser.html">File browser</a></li>
+    <li><a href="scanNetwork.html">Networks</a></li>
+  </ul>
+</nav>
+<div class="openNav" id="openNav">
+  <div class="icon"></div>
+</div>
+
+<div class="wrapper" id="mywrapper">
+
+  <section>
+    <h1>Choose network</h1>
+    <h3>Below you will find available networks Suitch can see, choose the one you own and connect</h3>
+<form onsubmit="return false;">
+
+<div id="listaWifi">
+
+</div>
+<center><a href="javascript:scan();" style="color:#666">Refresh list</a></center>
+
+<p>
+  <input type="submit" value="Gogogo" onclick="saveDetails()">
+  
+</p>
+</form>
+    
+  </section>
+</div>
+  <script type="text/javascript">
+
+document.getElementById("openNav").addEventListener("click", function(){
+    document.body.classList.toggle('navOpen');  
+    document.querySelector('#mynav').classList.toggle('open');
+    document.querySelector('#mywrapper').classList.toggle('open');
+});
+function scan(){
+nanoajax.ajax('/scan.suit', 'post=content', function (code, responseText) {
+    console.log(responseText); 
+    var parsed = JSON.parse(responseText);
+    document.querySelector('#listaWifi').innerHTML="";
+    for(var x in parsed){
+      document.querySelector('#listaWifi').insertAdjacentHTML('beforeend','<p class="radioP"><input type="radio" name="ssid" value="'+parsed[x].ssid+'" id="'+parsed[x].ssid+'" required /><label for="'+parsed[x].ssid+'"><span class="radioButtonGraph"></span>'+parsed[x].ssid+'</label></p>');
+    }
+});
+}
+
+  </script>
+
+<script src="/uQuery.min.js"></script>
+  
+
+</body>
+
+</html>

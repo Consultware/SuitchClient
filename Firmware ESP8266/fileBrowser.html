@@ -1,0 +1,289 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+    <title>Consultware dash button navigation</title>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:300|Text+Me+One' rel='stylesheet' type='text/css'>
+  <style type="text/css">
+  
+    * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #666666;
+  line-height: 1.5em;
+  position: relative;
+}
+.navOpen {
+  overflow: hidden;
+}
+
+.wrapper {
+  transition-duration: 0.5s;
+  transition-timing-function: swing;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 100px 40px;
+}
+.wrapper.open {
+  transform: translateX(250px) translateY(50px);
+  -webkit-transform: translateX(250px) translateY(50px);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+}
+.wrapper section {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.wrapper section h1 {
+  font-weight: 300;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+.wrapper section h2 {
+  font-weight: 300;
+  font-size: 20px;
+  margin-bottom: 40px;
+}
+.wrapper section p {
+  margin-bottom: 40px;
+}
+.openNav {
+  transition-duration: 0.5s;
+  transition-timing-function: swing;
+  width: 50px;
+  height: 50px;
+  background-color: #14B9FF;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9;
+}
+.openNav:hover {
+  cursor: pointer;
+}
+.openNav .icon {
+  transition-duration: 0.2s;
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background-color: white;
+  top: 24px;
+  left: 10px;
+}
+.openNav .icon:before,
+.openNav .icon:after {
+  transition-duration: 0.5s;
+  background-color: white;
+  position: absolute;
+  content: "";
+  width: 30px;
+  height: 2px;
+  left: 0px;
+}
+.openNav .icon:before {
+  top: -7px;
+}
+.openNav .icon:after {
+  top: 7px;
+}
+.openNav.open {
+  transform: translateX(250px) translateY(50px);
+  -webkit-transform: translateX(250px) translateY(50px);
+}
+.openNav.open .icon {
+  background-color: transparent;
+}
+.openNav.open .icon:before,
+.openNav.open .icon:after {
+  top: 0;
+}
+.openNav.open .icon:before {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.openNav.open .icon:after {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+nav {
+  background-color: #14B9FF;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+nav ul {
+  width: 250px;
+  margin-top: 50px;
+}
+nav ul:hover li {
+  color: rgba(255, 255, 255, 0.5);
+}
+nav ul li {
+  transition-duration: 0.25s;
+  display: block;
+  padding: 5px 40px;
+  color: white;
+  letter-spacing: 0.02em;
+  text-align: right;
+}
+nav ul li:hover {
+  cursor: pointer;
+  color: white;
+}
+
+a:link {
+    color: #dfe5eb;
+    text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+    color: #dfe5eb;
+    text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* selected link */
+a:active {
+    color: #dfe5eb;
+    text-decoration: none;
+}
+*::-moz-selection, *::selection {
+  color: rgba(0, 0, 0, 0.8);
+  background: rgba(255, 255, 255, 0.5);
+}
+form {
+  width: 100%;
+  color: #fff;
+  margin: 0 auto;
+  margin-top: 1em;
+}
+
+/*
+ * Title: input
+ */
+
+input[type="text"],textarea {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border: none;
+  font: 1.1em/1.75em 'Text Me One', sans-serif;
+  outline: none;
+  word-spacing: -.25em;
+  position: relative;
+  background-color: transparent;
+  border-bottom: 0.05em solid rgba(169, 147, 147, 0.4);
+  color: #999;
+  width: 100%;
+  margin-bottom: .2em;
+  font-variant: small-caps;
+  font-size: 1.5em;
+  line-height: 1em;
+  -moz-transition: box-shadow 0.55s ease-in-out;
+  -o-transition: box-shadow 0.55s ease-in-out;
+  -webkit-transition: box-shadow 0.55s ease-in-out;
+  transition: box-shadow 0.55s ease-in-out;
+}
+input[type="text"]:focus,textarea:focus {
+  box-shadow: 0 -1em 5em -0.2em rgba(245, 255, 213, 1), 0 1em 5em -0.2em rgba(245, 255, 213, 1);
+}
+
+
+
+  </style>
+
+</head>
+
+<body>
+
+  <nav id="mynav">
+  <ul>
+    <li><a href="welcome.html">Home</a></li>
+    <li><a href="iot1.html">Suitch IoT</a></li>
+    <li><a href="fileBrowser.html">File browser</a></li>
+    <li><a href="scanNetwork.html">Networks</a></li>
+  </ul>
+</nav>
+<div class="openNav" id="openNav">
+  <div class="icon"></div>
+</div>
+
+<div class="wrapper" id="mywrapper">
+  <section>
+    <h1>File editor</h1>
+    <h2>Browse your files, edit and delete them. Easy peasy</h2>
+    
+    <form method="get" action="">
+<table style="width:100%">
+  <tr>
+    <td><input type="text" name="title" autocomplete="off" spellcheck="false" id="fileTitle"></td>
+    <td>
+
+    <select style="height:100%;" id="archivos" onchange="getSingleFile();">
+ 
+</select>
+<a href="javascript:loadFiles();" style="color:#666">Refresh list</a>
+</td> 
+  </tr>
+</table>
+    <textarea data-type="1" name="text" rows="5" spellcheck="false" style="height:400px" id="fileContent"></textarea>
+    <table style="width:30%">
+  <tr>
+    <td><button type="button" data-type="2" contenteditable="true" spellcheck="false" style="width:70px" onclick="saveFile();">Save</button></td>
+    <td><button type="button" data-type="2" contenteditable="true" spellcheck="false" style="width:140px">Remove file</button></td> 
+  </tr>
+</table>
+  </form>
+  </section>
+</div>
+<script src="/uQuery.min.js"></script>
+  <script type="text/javascript">
+
+document.getElementById("openNav").addEventListener("click", function(){
+    document.body.classList.toggle('navOpen');  
+    document.querySelector('#mynav').classList.toggle('open');
+    document.querySelector('#mywrapper').classList.toggle('open');
+});
+function loadFiles(){
+nanoajax.ajax('/browseFiles.suit', 'post=content', function (code, responseText) {
+  console.log(responseText);
+  var parsed=JSON.parse(responseText);
+  var prefinal='';
+  for(var x in parsed){
+    prefinal+='<option value="'+parsed[x].file+'">'+parsed[x].file+" / "+parsed[x].size+' bytes</option>';  
+  }
+  document.getElementById('archivos').innerHTML=prefinal;
+  });
+}
+
+function getSingleFile(){
+  var x = document.getElementById("archivos").value;
+  document.getElementById("fileTitle").value=x;
+  nanoajax.ajax('/'+x, function (code, responseText) {
+    document.getElementById("fileContent").value=responseText;
+});
+}
+function saveFile(){
+  var x=new XMLHttpRequest();
+  x.open('POST',"/save.suit?fileName="+document.getElementById("fileTitle").value,true);
+  x.send(new Blob([document.getElementById("fileContent").value],{type:'text/plain'}));
+// nanoajax.ajax('/save.suit', 'fileName='+document.getElementById("fileTitle").value, function (code, responseText) {
+//   console.log(responseText);
+// });
+}
+
+  </script>
+</body>
+</html>
